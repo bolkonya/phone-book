@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import plusIconImage from '../../assets/svg/plus.svg';
 import findIconImage from '../../assets/svg/find.svg';
 
-import './index.css';
+import './index.styl';
 
 interface IControlPanelProps {}
 

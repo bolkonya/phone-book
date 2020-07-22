@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import logoImage from '../../assets/svg/book.svg';
 
-import './index.css';
+import './index.styl';
 
 
 export default class Header extends Component {
