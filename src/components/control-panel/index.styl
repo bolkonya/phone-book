@@ -5,7 +5,7 @@
 
   padding 0 0 10px
 
-&__buttons-bar 
+  &__buttons-bar
     display flex
     position relative
 
@@ -15,7 +15,7 @@
 
     background-color color-white
 
-&__button
+  &__button
     display flex
 
     width 200px
@@ -29,36 +29,36 @@
     color color-white
 
     font-size 20px
-    
+
     align-items center
     justify-content center
 
-    transition .5s
+    transition 0.5s
 
     &_active
-        background-color: color-light-blue
+      background-color color-light-blue
 
     &:hover
-        cursor pointer
+      cursor pointer
 
-        background-color color-light-blue
-    
+      background-color color-light-blue
+
     &:disabled
-        opacity .5
-    
-        &:hover
-            cursor default
+      opacity 0.5
 
-            background-color color-light-green
+      &:hover
+        cursor default
 
-&__input-form
+        background-color color-light-green
+
+  &__input-form
     position absolute
     z-index 2000
 
     top -500px
     margin 50px 0 0 0
     padding 0 0 20px 0
-    
+
 
     background-color color-white
     color color-light-gray
@@ -67,34 +67,34 @@
     transition 1s
 
     &_opened
-        top 0
+      top 0
 
-&__input-box
+  &__input-box
     display inline-block
 
     margin 0 20px 0 10px
 
-&__input-field
-&__input 
+  &__input-field
+  &__input
     display block
 
-&__input
+  &__input
     width 400px
     height 30px
     margin 5px 0 0 -10px
     padding 0 10px
-    
+
     font-size 15px
 
     border 1px solid color-light-gray-for-borders
     border-radius 15px
 
     &::placeholder
-        color color-light-gray-for-placeholders
+      color color-light-gray-for-placeholders
 
-&__input-form-button
-    height 30px;
-    padding 0 15px;
+  &__input-form-button
+    height 30px
+    padding 0 15px
 
     border none
     border-radius 15px
@@ -102,14 +102,14 @@
     background-color color-light-gray
     color color-white
 
-    transition .5s
+    transition 0.5s
 
     &:hover
-        cursor pointer
+      cursor pointer
 
-        background-color color-light-gray-for-hover
+      background-color color-light-gray-for-hover
 
-.button-icon 
+  .button-icon
     width 20px
     height 20px
 
