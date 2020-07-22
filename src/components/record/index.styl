@@ -1,0 +1,47 @@
+@import '../../global.styl'
+
+.record
+  display flex
+
+  justify-content space-between
+  align-items center
+
+  padding 10px 20px
+  margin 10px 0
+
+  border-radius 100px
+
+  background gradient-light-green-to-turquoise
+  color color-white
+
+  &__name
+    position relative
+
+    overflow hidden
+    text-overflow ellipsis
+
+    max-width 200px
+
+    flex-basis 200px
+
+  &__delete
+    padding 5px
+    width 30px
+    height 30px
+
+    border none
+    border-radius 50px
+
+    opacity 0.5
+
+    background transparent
+
+    transition 0.3s
+
+    &:hover
+      opacity 1
+
+      cursor pointer
+
+  &__delete-icon
+    width 100%
