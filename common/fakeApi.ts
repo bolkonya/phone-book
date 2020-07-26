@@ -3,50 +3,50 @@
  * Для хоть какой-то правдоподобности возвращает промисы (почему бы и нет)
  */
 
-import {IPhoneBookRecord} from './types';
+import { IPhoneBookRecord } from './types';
 
 const defaultRecordsList = [
   {
     id: 0,
     name: 'Robo Bobo',
-    phoneNumber: '+72322323232'
+    phoneNumber: '+72322323232',
   },
   {
     id: 1,
     name: 'Bobo Robo',
-    phoneNumber: '+72322321112'
+    phoneNumber: '+72322321112',
   },
   {
     id: 2,
     name: 'Оби-Ван Кеноби',
-    phoneNumber: '+78002223535'
+    phoneNumber: '+78002223535',
   },
   {
     id: 3,
     name: 'Генерал Гривус',
-    phoneNumber: '2666666'
+    phoneNumber: '2666666',
   },
-]
+];
 
 export default class PhoneBookApiWorker {
   records: IPhoneBookRecord[];
 
-  constructor (records: IPhoneBookRecord[] = defaultRecordsList) {
+  constructor(records: IPhoneBookRecord[] = defaultRecordsList) {
     this.records = records;
   }
 
   private getRecords() {
-    return this.records.sort((firstRecord, secondRecord) => {
-      return firstRecord.name.localeCompare(secondRecord.name);
-    });
+    return this.records.sort((firstRecord, secondRecord) =>
+      firstRecord.name.localeCompare(secondRecord.name)
+    );
   }
 
-  fetchGetRecordsRequest() {
+  fetchGetRecordsRequest(): Promise<Array<IPhoneBookRecord>> {
     return Promise.resolve(this.getRecords());
   }
 
-  fetchDeleteRequest(id: number) {
-    const index = this.records.findIndex(record => record.id === id);
+  fetchDeleteRequest(id: number): Promise<Array<IPhoneBookRecord>> {
+    const index = this.records.findIndex((record) => record.id === id);
 
     if (index !== -1) {
       this.records.splice(index, 1);
@@ -55,13 +55,18 @@ export default class PhoneBookApiWorker {
     return Promise.resolve(this.getRecords());
   }
 
-  fetchAddRecordRequest(name: string, phoneNumber: string) {
-    const id = this.records.length ? Math.max(...this.records.map(record => record.id)) + 1 : 0;
+  fetchAddRecordRequest(
+    name: string,
+    phoneNumber: string
+  ): Promise<Array<IPhoneBookRecord>> {
+    const id = this.records.length
+      ? Math.max(...this.records.map((record) => record.id)) + 1
+      : 0;
 
     this.records.push({
       id,
       name,
-      phoneNumber
+      phoneNumber,
     });
 
     return Promise.resolve(this.getRecords());
