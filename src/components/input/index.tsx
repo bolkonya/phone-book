@@ -13,6 +13,7 @@ export default class Input extends Component<IInputProps> {
       type,
       placeholder,
       required,
+      tabIndex,
     } = this.props;
 
     return (
@@ -23,6 +24,7 @@ export default class Input extends Component<IInputProps> {
         type={type}
         placeholder={placeholder}
         required={required}
+        tabIndex={tabIndex || 0}
       />
     );
   }

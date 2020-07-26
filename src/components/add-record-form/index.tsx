@@ -98,11 +98,14 @@ export default class Record extends Component<
   };
 
   render(): ReactNode {
+    const { isOpened, changeVisibility } = this.props;
+    const { nameValue, phoneValue, tip, validationError } = this.state;
+
     return (
       <Fragment>
         <form
           className={`add-record-form ${
-            this.props.isOpened ? 'add-record-form_opened' : ''
+            isOpened ? 'add-record-form_opened' : ''
           }`}
           onSubmit={this.addRecord}
         >
@@ -113,10 +116,11 @@ export default class Record extends Component<
               <Input
                 classNames={['add-record-form__input']}
                 onChangeHandler={this.onNameInputChange}
-                value={this.state.nameValue}
+                value={nameValue}
                 type={'text'}
                 placeholder={'Введите имя'}
                 required={true}
+                tabIndex={isOpened ? 0 : -1}
               />
             </label>
           </div>
@@ -126,25 +130,28 @@ export default class Record extends Component<
               <Input
                 classNames={['add-record-form__input']}
                 onChangeHandler={this.onPhoneInputChange}
-                value={this.state.phoneValue}
+                value={phoneValue}
                 type={'tel'}
                 placeholder={'Введите номер'}
                 required={true}
+                tabIndex={isOpened ? 0 : -1}
               />
             </label>
           </div>
-          <button className="add-record-form__button" type="submit">
+          <button
+            className="add-record-form__button"
+            type="submit"
+            tabIndex={isOpened ? 0 : -1}
+          >
             Добавить
           </button>
-          {this.state.validationError && (
-            <div className="add-record-form__tip">{this.state.tip}</div>
-          )}
+          {validationError && <div className="add-record-form__tip">{tip}</div>}
         </form>
         <div
           className={`hide-content-layer ${
-            this.props.isOpened ? 'hide-content-layer_active' : ''
+            isOpened ? 'hide-content-layer_active' : ''
           }`}
-          onClick={this.props.changeVisibility}
+          onClick={changeVisibility}
         ></div>
       </Fragment>
     );

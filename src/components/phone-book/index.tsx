@@ -81,14 +81,14 @@ export default class PhoneBook extends Component<
   };
 
   render(): ReactNode {
+    const { addFormOpened, records, searchValue } = this.state;
+
     return (
       <main className="phone-book">
         <div className="phone-book__control-panel">
           <div className="phone-book__buttons-bar">
             <button
-              className={`button ${
-                this.state.addFormOpened ? 'button_active' : ''
-              }`}
+              className={`button ${addFormOpened ? 'button_active' : ''}`}
               onClick={this.changeAddFormVisibility}
             >
               <img
@@ -102,13 +102,13 @@ export default class PhoneBook extends Component<
           <AddRecordForm
             changeVisibility={this.changeAddFormVisibility}
             addHandler={this.addRecord}
-            records={this.state.records}
-            isOpened={this.state.addFormOpened}
+            records={records}
+            isOpened={addFormOpened}
           />
           <Input
             classNames={['phone-book__search-input']}
             onChangeHandler={this.onSearchInputChange}
-            value={this.state.searchValue}
+            value={searchValue}
             type={'text'}
             placeholder={'Поиск по имени или номеру'}
           />
@@ -118,8 +118,9 @@ export default class PhoneBook extends Component<
         ) : (
           <RecordList
             deleteHandler={this.deleteRecord}
-            records={this.state.records}
-            searchString={this.state.searchValue}
+            records={records}
+            searchString={searchValue}
+            disableFocus={addFormOpened}
           />
         )}
       </main>

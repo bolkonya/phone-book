@@ -6,7 +6,7 @@ import { IRecordListProps } from '../../../common/types';
 
 export default class RecordList extends Component<IRecordListProps> {
   render(): ReactNode {
-    const { records } = this.props;
+    const { records, disableFocus, deleteHandler } = this.props;
     const searchString = this.props.searchString.trim().toUpperCase();
     const shownRecords = searchString
       ? records.filter(
@@ -20,9 +20,10 @@ export default class RecordList extends Component<IRecordListProps> {
       <article className="record-list">
         {shownRecords.map((record) => (
           <Record
-            deleteHandler={this.props.deleteHandler}
+            deleteHandler={deleteHandler}
             record={record}
             key={record.id}
+            disableFocus={disableFocus}
           />
         ))}
       </article>

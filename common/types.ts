@@ -27,11 +27,13 @@ export interface IControlPanelState {
 export interface IRecordListProps {
   records: Array<IPhoneBookRecord>;
   searchString: string;
+  disableFocus: boolean;
   deleteHandler: (id: number) => void;
 }
 
 export interface IRecordProps {
   record: IPhoneBookRecord;
+  disableFocus: boolean;
   deleteHandler: (id: number) => void;
 }
 
@@ -56,4 +58,5 @@ export interface IInputProps {
   placeholder: string;
   type: string;
   classNames: Array<string>;
+  tabIndex?: number;
 }
