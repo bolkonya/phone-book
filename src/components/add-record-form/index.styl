@@ -12,29 +12,16 @@
   background-color color-white
   box-shadow 0 8px 8px -8px color-light-gray-for-shadows
 
-  transition 1s
+  transition 0.35s
 
   &_opened
     top 0
 
+  &__input
+    margin 5px 0 0 -10px
+
   &__field
     margin 0 20px 15px 10px
-
-  &__input
-    display block
-
-    width 400px
-    height 30px
-    margin 5px 0 0 -10px
-    padding 0 10px
-
-    font-size 15px
-
-    border 1px solid color-light-gray-for-borders
-    border-radius 15px
-
-    &::placeholder
-      color color-light-gray-for-placeholders
 
   &__button
     height 30px
@@ -66,3 +53,20 @@
     font-size 14px
 
     color color-red
+
+.hide-content-layer
+  position absolute
+  visibility hidden
+  z-index 1999
+  opacity 0.5
+
+  width 150vw
+  height 150vh
+
+  top -50vh
+  left -50vw
+
+  background-color color-white
+
+  &_active
+    visibility visible

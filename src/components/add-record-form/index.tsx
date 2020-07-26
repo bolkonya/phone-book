@@ -1,4 +1,6 @@
-import React, {Component, FormEvent} from 'react';
+import React, {Component, FormEvent, Fragment} from 'react';
+
+import Input from '../input';
 
 import {IAddRecordFormProps, IAddRecordFormState} from '../../../common/types';
 
@@ -84,28 +86,32 @@ export default class Record extends Component<IAddRecordFormProps, IAddRecordFor
 
   render() {
     return (
-      <form className={`add-record-form ${this.props.isOpened ? 'add-record-form_opened' : ''}`} onSubmit={this.addRecord}>
-        <h1>Добавить новую запись</h1>
-        <div className='add-record-form__field'>
-          <label>
-            Имя
-            <input className='add-record-form__input' value={this.state.nameValue} onChange={this.onNameInputChange} type='text' placeholder='Введите имя' required />
-          </label>
-        </div>
-        <div className='add-record-form__field'>
-          <label>
-            Телефон
-            <input className='add-record-form__input' value={this.state.phoneValue} onChange={this.onPhoneInputChange} type='tel' placeholder='Введите номер' required />
-          </label>
-        </div>
-        <button className='add-record-form__button' type='submit'>Добавить</button>
-        {
-          this.state.validationError &&
-          <div className='add-record-form__tip'>
-              {this.state.tip}
-            </div>
-        }
-      </form>
+      <Fragment>
+        <form className={`add-record-form ${this.props.isOpened ? 'add-record-form_opened' : ''}`} onSubmit={this.addRecord}>
+          <h1>Добавить новую запись</h1>
+          <div className='add-record-form__field'>
+            <label>
+              Имя
+              <Input classNames={['add-record-form__input']} onChangeHandler={this.onNameInputChange} value={this.state.nameValue} type={'text'} placeholder={'Введите имя'} required={true} />
+            </label>
+          </div>
+          <div className='add-record-form__field'>
+            <label>
+              Телефон
+              <Input classNames={['add-record-form__input']} onChangeHandler={this.onPhoneInputChange} value={this.state.phoneValue} type={'tel'} placeholder={'Введите номер'} required={true} />
+            </label>
+          </div>
+          <button className='add-record-form__button' type='submit'>Добавить</button>
+          {
+            this.state.validationError &&
+            <div className='add-record-form__tip'>
+                {this.state.tip}
+              </div>
+          }
+        </form>
+        <div className={`hide-content-layer ${this.props.isOpened ? 'hide-content-layer_active' : ''}`} onClick={this.props.changeVisibility}></div>
+      </Fragment>
+      
     );
   }
 }

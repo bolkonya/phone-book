@@ -1,3 +1,5 @@
+import { FormEvent } from "react";
+
 export interface IPhoneBookRecord {
   id: number;
   name: string;
@@ -8,6 +10,8 @@ export interface IPhoneBookProps {}
 
 export interface IPhoneBookState {
   records: Array<IPhoneBookRecord>;
+  searchValue: string;
+  addFormOpened: boolean;
   dataIsFetching: boolean;
 }
 
@@ -22,6 +26,7 @@ export interface IControlPanelState {
 
 export interface IRecordListProps {
   records: Array<IPhoneBookRecord>;
+  searchString: string;
   deleteHandler: (id: number) => void;
 }
 
@@ -42,4 +47,13 @@ export interface IAddRecordFormState {
   phoneValue: string;
   validationError: boolean;
   tip: string;
+}
+
+export interface IInputProps {
+  onChangeHandler: (event: FormEvent<HTMLInputElement>) => void;
+  value: string;
+  required?: boolean;
+  placeholder: string;
+  type: string;
+  classNames: Array<string>;
 }
