@@ -15,15 +15,6 @@ export interface IPhoneBookState {
   dataIsFetching: boolean;
 }
 
-export interface IControlPanelProps {
-  records: Array<IPhoneBookRecord>;
-  addHandler: (name: string, phoneNumber: string) => void;
-}
-
-export interface IControlPanelState {
-  addFormOpened: boolean;
-}
-
 export interface IRecordListProps {
   records: Array<IPhoneBookRecord>;
   searchString: string;
@@ -55,8 +46,8 @@ export interface IInputProps {
   onChangeHandler: (event: FormEvent<HTMLInputElement>) => void;
   value: string;
   required?: boolean;
-  placeholder: string;
-  type: string;
-  classNames: Array<string>;
+  placeholder?: string;
+  type?: string;
+  classNames?: Array<string>;
   tabIndex?: number;
 }

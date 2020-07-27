@@ -18,7 +18,7 @@ export default class PhoneBook extends Component<
   IPhoneBookProps,
   IPhoneBookState
 > {
-  state: IPhoneBookState = {
+  state = {
     addFormOpened: false,
     records: [],
     dataIsFetching: true,
@@ -66,17 +66,24 @@ export default class PhoneBook extends Component<
   };
 
   changeAddFormVisibility = (): void => {
+    if (!this.state.addFormOpened) {
+      this.clearSearchValue();
+    }
+
     this.setState({
-      searchValue: !this.state.addFormOpened ? '' : this.state.searchValue,
       addFormOpened: !this.state.addFormOpened,
     });
   };
 
   onSearchInputChange = (event: FormEvent<HTMLInputElement>): void => {
-    const value = (event.target as HTMLInputElement).value;
-
     this.setState({
-      searchValue: value,
+      searchValue: (event.target as HTMLInputElement).value,
+    });
+  };
+
+  clearSearchValue = (): void => {
+    this.setState({
+      searchValue: '',
     });
   };
 
@@ -109,7 +116,6 @@ export default class PhoneBook extends Component<
             classNames={['phone-book__search-input']}
             onChangeHandler={this.onSearchInputChange}
             value={searchValue}
-            type={'text'}
             placeholder={'Поиск по имени или номеру'}
           />
         </div>

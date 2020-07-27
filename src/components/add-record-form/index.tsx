@@ -12,6 +12,11 @@ import './index.styl';
 const MAX_NAME_LEN = 60;
 const MAX_PHONE_LEN = 14;
 const MIN_PHONE_LEN = 2;
+const TIPS = {
+  nameInputTip: `Имя не должно быть пустым, состоять из пробельных символов или быть длиннее ${MAX_NAME_LEN} символов`,
+  phoneInputTip: `Номер телефона должен включать в себя от ${MIN_PHONE_LEN} до ${MAX_PHONE_LEN} цифр, может начинаться с +`,
+  existRecordTip: `В книге уже есть запись с таким именем и/или телефоном`,
+};
 
 export default class Record extends Component<
   IAddRecordFormProps,
@@ -51,19 +56,19 @@ export default class Record extends Component<
 
   addRecord = (event: React.FormEvent<HTMLFormElement>): void => {
     const name = this.state.nameValue.trim();
-    const phone = this.state.phoneValue;
+    const phone = this.state.phoneValue.trim();
 
     event.preventDefault();
 
     if (!name || !/\S+/.test(name)) {
       this.setState({
         validationError: true,
-        tip: `Имя не должно быть пустым, состоять из пробельных символов или быть длиннее ${MAX_NAME_LEN} символов`,
+        tip: TIPS.nameInputTip,
       });
     } else if (!phone || !/^(\+)?\d{2,14}$/.test(phone)) {
       this.setState({
         validationError: true,
-        tip: `Номер телефона должен включать в себя от ${MIN_PHONE_LEN} до ${MAX_PHONE_LEN} цифр, может начинаться с +`,
+        tip: TIPS.phoneInputTip,
       });
     } else if (
       this.props.records.findIndex(
@@ -73,7 +78,7 @@ export default class Record extends Component<
     ) {
       this.setState({
         validationError: true,
-        tip: `В книге уже есть запись с таким именем и/или телефоном`,
+        tip: TIPS.existRecordTip,
       });
     } else {
       this.props.addHandler(name, phone);
@@ -117,7 +122,6 @@ export default class Record extends Component<
                 classNames={['add-record-form__input']}
                 onChangeHandler={this.onNameInputChange}
                 value={nameValue}
-                type={'text'}
                 placeholder={'Введите имя'}
                 required={true}
                 tabIndex={isOpened ? 0 : -1}

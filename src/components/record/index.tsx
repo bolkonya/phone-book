@@ -12,14 +12,19 @@ export default class Record extends Component<IRecordProps> {
   };
 
   render(): ReactNode {
+    const {
+      record: { name, phoneNumber },
+      disableFocus,
+    } = this.props;
+
     return (
       <section className="record">
-        <div className="record__name">{this.props.record.name}</div>
-        <div className="record__phone">{this.props.record.phoneNumber}</div>
+        <div className="record__name">{name}</div>
+        <div className="record__phone">{phoneNumber}</div>
         <button
           className="record__delete"
           onClick={this.onDeleteClick}
-          tabIndex={this.props.disableFocus ? -1 : 0}
+          tabIndex={disableFocus ? -1 : 0}
         >
           <img
             className="record__delete-icon"

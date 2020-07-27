@@ -1,5 +1,3 @@
 module.exports = {
-    extends: [
-        "stylelint-plugin-stylus/standard"
-    ],
-}
+  extends: ['stylelint-plugin-stylus/standard'],
+};

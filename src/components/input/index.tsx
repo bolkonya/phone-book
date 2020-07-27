@@ -18,12 +18,12 @@ export default class Input extends Component<IInputProps> {
 
     return (
       <input
-        className={`input ${classNames.join(' ')}`}
+        className={`input ${classNames ? classNames.join(' ') : ''}`}
         value={value}
         onChange={onChangeHandler}
-        type={type}
-        placeholder={placeholder}
-        required={required}
+        type={type || 'text'}
+        placeholder={placeholder || ''}
+        required={Boolean(required)}
         tabIndex={tabIndex || 0}
       />
     );
